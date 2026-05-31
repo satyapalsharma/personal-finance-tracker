@@ -1,0 +1,47 @@
+```json
+{
+    "name": "personal-finance-tracker/api",
+    "description": "PHP API for the Personal Finance Tracker application. Manages income, expenses, categories, and provides basic financial reporting. This service is designed to integrate with other applications in our ecosystem, such as providing financial insights to the 'Personalized Weather Dashboard' or handling payment confirmations from the 'E-commerce Product Catalog'.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "your.email@example.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "vlucas/phpdotenv": "^5.6",
+        "monolog/monolog": "^3.0"
+        // For database interaction, we're using native PDO, which is a PHP extension
+        // and doesn't require a Composer package unless an ORM or a specific DBAL is introduced.
+        // If a more robust routing solution were needed beyond a simple dispatcher in index.php,
+        // a package like 'nikic/fast-route' or 'slim/slim' could be added here.
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "api/src/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-update-cmd": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "test": "phpunit --testsuite Unit"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
+```

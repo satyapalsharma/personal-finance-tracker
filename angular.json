@@ -1,0 +1,186 @@
+```json
+{
+  // Defines the schema for angular.json, enabling autocompletion and validation in IDEs.
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  // Specifies the version of the Angular CLI configuration file format.
+  "version": 1,
+  // The root directory where new projects will be created by the Angular CLI.
+  "newProjectRoot": "projects",
+  // Defines all projects within this Angular workspace.
+  "projects": {
+    // Configuration for the main application project: Personal Finance Tracker.
+    "personal-finance-tracker": {
+      // Specifies that this is an application project (as opposed to a library).
+      "projectType": "application",
+      // Default schematics options for this project.
+      "schematics": {
+        // Sets the default style preprocessor for new components to SCSS.
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      // The root directory of this project relative to the workspace root.
+      "root": "",
+      // The root directory for source files.
+      "sourceRoot": "src",
+      // The prefix used for generated component selectors (e.g., <app-root>).
+      "prefix": "app",
+      // Defines the various build targets and their configurations for the project.
+      "architect": {
+        // Configuration for building the application.
+        "build": {
+          // The builder used for compiling the Angular application for browsers.
+          "builder": "@angular-devkit/build-angular:browser",
+          // Default options for the build target.
+          "options": {
+            // The output directory for the build artifacts.
+            "outputPath": "dist/personal-finance-tracker",
+            // The main HTML file that serves as the entry point.
+            "index": "src/index.html",
+            // The main TypeScript file that bootstraps the application.
+            "main": "src/main.ts",
+            // Polyfills required for browser compatibility.
+            "polyfills": [
+              "zone.js"
+            ],
+            // The TypeScript configuration file for the application.
+            "tsConfig": "tsconfig.app.json",
+            // Assets to be copied to the output directory.
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            // Global style files to be included in the build.
+            "styles": [
+              "src/styles.scss"
+            ],
+            // Global script files to be included in the build.
+            "scripts": []
+          },
+          // Specific configurations for different build environments (e.g., production, development).
+          "configurations": {
+            // Production build configuration: optimized for deployment.
+            "production": {
+              // Budget configuration to warn/error on exceeding bundle sizes.
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              // Adds content hashes to filenames for cache busting.
+              "outputHashing": "all",
+              // Replaces environment files for production builds.
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            // Development build configuration: optimized for local development.
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          // The default configuration to use when `ng build` is run without `--configuration`.
+          "defaultConfiguration": "production"
+        },
+        // Configuration for serving the application locally during development.
+        "serve": {
+          // The builder used for running a development server.
+          "builder": "@angular-devkit/build-angular:dev-server",
+          // Default options for the serve target.
+          "options": {
+            // Specifies which build target to use when serving.
+            "browserTarget": "personal-finance-tracker:build",
+            // Points to a proxy configuration file for API requests.
+            // This is crucial for interacting with the PHP backend (api/index.php)
+            // and potentially other microservices like the Quiz or Weather APIs
+            // during local development, avoiding CORS issues.
+            "proxyConfig": "proxy.conf.json"
+          },
+          // Specific configurations for different serve environments.
+          "configurations": {
+            "production": {
+              "browserTarget": "personal-finance-tracker:build:production"
+            },
+            "development": {
+              "browserTarget": "personal-finance-tracker:build:development"
+            }
+          },
+          // The default configuration to use when `ng serve` is run without `--configuration`.
+          "defaultConfiguration": "development"
+        },
+        // Configuration for extracting internationalization (i18n) messages.
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "personal-finance-tracker:build"
+          }
+        },
+        // Configuration for running unit tests with Karma.
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        // Configuration for linting the project using Angular ESLint.
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
+  // Global CLI configuration options.
+  "cli": {
+    // Disables Angular CLI analytics reporting.
+    "analytics": false,
+    // Specifies schematic collections to use globally.
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
+  },
+  // Default schematic options for the entire workspace.
+  "schematics": {
+    // ESLint schematic options for applications.
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    // ESLint schematic options for libraries.
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
+    }
+  }
+}
+```
